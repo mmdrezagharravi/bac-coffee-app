@@ -9,7 +9,7 @@ const coffeeSchema = new mongoose.Schema(
     imageURL: {
       type: String,
     },
-    foods: { type: Array },
+    cofe: { type: Array },
     time: {
       type: String,
     },

@@ -20,7 +20,7 @@ app.use(cors());
 // route
 app.use("/api/v1/auth", require("./routes/authRoutes"));
 app.use("/api/v1/user", require("./routes/userRoutes"));
-app.use("./api/v1/cofe", require("./routes/cofeRoutes"));
+app.use("/api/v1/cofe", require("./routes/cofeRoutes"));
 
 app.get("/test", (req, res) => {
   return res.status(200).send("<h1> سلام خوبی به اولین سایت من خوش اومد </h1>");

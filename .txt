@@ -1,0 +1,56 @@
+// example for cofe resturant
+
+{
+    "title": "قهوه خانه آرامش",
+    "imageURL": "https://example.com/coffee-shop-image.jpg",
+    "cofe": ["قهوه اسپرسو", "لاته", "کاپوچینو"],
+    "time": "08:00 AM - 10:00 PM",
+    "pickup": true,
+    "delivery": false,
+    "isOpen": true,
+    "logoURL": "https://example.com/aramesh-logo.png",
+    "rating": 4.5,
+    "ratingCount": 120,
+    "coords": {
+        "id": "A123",
+        "latitude": 35.7000,
+        "longitude": 51.3000,
+        "longitudeDelta": 0.02,
+        "address": "خیابان اصلی، پلاک 10",
+        "title": "قهوه خانه آرامش"
+    }
+}
+//////////////////////////////////////////////////////
+
+
+{
+  "title": "Starbucks",
+  "imageURL": "https://example.com/starbucks-logo.jpg",
+  "cofe": [
+    {
+      "name": "Espresso",
+      "size": "Medium",
+      "price": 4
+    },
+    {
+      "name": "Latte",
+      "size": "Large",
+      "price": 5
+    }
+  ],
+  "time": "07:00 AM - 11:00 PM",
+  "pickup": true,
+  "delivery": false,
+  "isOpen": true,
+  "logoURL": "https://example.com/starbucks-logo.jpg",
+  "rating": 4,
+  "ratingCount": 350,
+  "coords": {
+    "id": "12345",
+    "latitude": 37,
+    "longitude": 4194,
+    "longitudeDelta": 1,
+    "address": "123 Market St, San Francisco, CA",
+    "title": "Starbucks Downtown"
+  }
+}
