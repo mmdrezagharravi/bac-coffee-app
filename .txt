@@ -54,3 +54,19 @@
     "title": "Starbucks Downtown"
   }
 }
+
+
+////////////////////////////////////////////////////////////////////////
+for sign up example 
+
+
+{
+    "userName": "name ",
+    "email": "email@gmail.com",
+    "password": "123456789",
+    "phone": "123456189",
+    "address":["tehran","th"],
+    "answer": "nemidoonam"
+}
+
+
