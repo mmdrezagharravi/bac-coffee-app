@@ -22,6 +22,7 @@ app.use("/api/v1/auth", require("./routes/authRoutes"));
 app.use("/api/v1/user", require("./routes/userRoutes"));
 app.use("/api/v1/cofe", require("./routes/cofeRoutes"));
 app.use("/api/v1/category", require("./routes/categoryRoutes"));
+app.use("/api/v1/coffeeee", require("./routes/coffeeRoutes"));
 
 app.get("/test", (req, res) => {
   return res.status(200).send("<h1> Welcome to Coffee Server App </h1>");
