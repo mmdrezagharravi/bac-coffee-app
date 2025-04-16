@@ -1,4 +1,4 @@
-const categoryModel = require("../models/categoryModel");
+import Category from "../models/categoryModel.js";
 
 // Create Category
 const createCatController = async (req, res) => {
@@ -31,7 +31,7 @@ const createCatController = async (req, res) => {
 // get all category
 const getAllCategoryController = async (req, res) => {
   try {
-    const categories = await categoryModel.find({});
+    const categories = await Category.find({});
     if (!categories) {
       res.status(404).send({
         success: false,
@@ -59,7 +59,7 @@ const updateCategoryController = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, imageUrl } = req.body;
-    const updateCategory = await categoryModel.findByIdAndUpdate(
+    const updateCategory = await Category.findByIdAndUpdate(
       id,
       { title, imageUrl },
       { new: true }
@@ -89,7 +89,7 @@ const updateCategoryController = async (req, res) => {
 const deletCategoryController = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletCategory = await categoryModel.findByIdAndDelete(id);
+    const deletCategory = await Category.findByIdAndDelete(id);
     if (!deletCategory) {
       return res.status(404).send({
         success: false,
@@ -109,7 +109,7 @@ const deletCategoryController = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   createCatController,
   getAllCategoryController,
   updateCategoryController,

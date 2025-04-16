@@ -1,4 +1,4 @@
-const cofeResturantModel = require("../models/cofeResturantModel");
+import Coffee from "../models/cofeResturantModel.js";
 
 const createCofeController = async (req, res) => {
   try {
@@ -53,7 +53,7 @@ const createCofeController = async (req, res) => {
 
 const getAllCofeController = async (req, res) => {
   try {
-    const cofes = await cofeResturantModel.find({});
+    const cofes = await Coffee.find({});
     if (!cofes) {
       return res.status(404).send({
         success: false,
@@ -85,7 +85,7 @@ const getCofeByIdController = async (req, res) => {
       });
     }
     // find cofe
-    const cofe = await cofeResturantModel.findById(cofeId);
+    const cofe = await Coffee.findById(cofeId);
     if (!cofe) {
       return res.status(404).send({
         success: false,
@@ -116,7 +116,7 @@ const deleteCofeController = async (req, res) => {
         message: "please provide cofe ai",
       });
     }
-    await cofeResturantModel.findByIdAndDelete(cofeId);
+    await Coffee.findByIdAndDelete(cofeId);
     res.status(200).send({
       success: true,
       message: "cofe deleted successfully",
@@ -136,7 +136,7 @@ const deleteCofeController = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   createCofeController,
   getAllCofeController,
   getCofeByIdController,

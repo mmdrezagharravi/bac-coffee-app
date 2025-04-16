@@ -1,15 +1,15 @@
-const express = require("express");
+import { Router } from "express";
 
-const authMiddleware = require("../middlewares/authMiddleware");
+import authMiddleware from "../middlewares/authMiddleware.js";
 // const router = require("./authRoutes");
-const {
+import {
   createCatController,
   getAllCategoryController,
   updateCategoryController,
   deletCategoryController,
-} = require("../controllers/categoryController");
+} from "../controllers/categoryController.js";
 
-const router = express.Router();
+const router = Router();
 
 //router
 // create category
@@ -24,4 +24,4 @@ router.put("/update/:id", authMiddleware, updateCategoryController);
 // delete category
 router.delete("/delete/:id", authMiddleware, deletCategoryController);
 
-module.exports = router;
+export default router;

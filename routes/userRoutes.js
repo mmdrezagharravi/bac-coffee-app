@@ -1,14 +1,15 @@
-const express = require("express");
+import { Router } from "express";
+import newLocal from "../controllers/userController.js";
 const {
   getUserController,
   updateUserController,
   updatePasswordController,
   resetPasswordController,
   deleteProfileController,
-} = require("../controllers/userController");
-const authMiddleware = require("../middlewares/authMiddleware");
+} = newLocal;
+import authMiddleware from "../middlewares/authMiddleware.js";
 
-const router = express.Router();
+const router = Router();
 
 // get user || GET
 
@@ -28,4 +29,4 @@ router.post("/resetPassword", authMiddleware, resetPasswordController);
 // delete user
 router.delete("/deleteUser/:id", authMiddleware, deleteProfileController);
 
-module.exports = router;
+export default router;

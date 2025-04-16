@@ -1,10 +1,10 @@
-const JWT = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-module.exports = async (req, res, next) => {
+export default async (req, res, next) => {
   try {
     //get token
     const token = req.headers["authorization"].split(" ")[1];
-    JWT.verify(token, process.env.JWT_SECRET, (err, decode) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
       if (err) {
         return res.status(401).send({
           soccess: false,
@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error in aoth api",
+      message: "Error in auth api",
       error,
     });
   }

@@ -69,4 +69,18 @@ for sign up example
     "answer": "nemidoonam"
 }
 
+for coffe created :
+{
+  "name": "Caramel Macchiato",
+  "description": "Espresso with vanilla syrup, steamed milk, foam, and caramel drizzle.",
+  "price": "6.5",
+  "imageUrl": "https://www.example.com/images/caramel_macchiato.jpg",
+  "category": "Coffee",
+  "available": true,
+  "size": "large",
+  "isHot": true,
+  "rating": 4.8
+}
+
+
 

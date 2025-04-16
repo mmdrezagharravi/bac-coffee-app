@@ -1,15 +1,15 @@
-const express = require("express");
+import { Router } from "express";
 
-const authMiddleware = require("../middlewares/authMiddleware");
-const { create } = require("../models/userModel");
-const {
+import authMiddleware from "../middlewares/authMiddleware.js";
+import create from "../models/userModel.js";
+import {
   createCofeController,
   getAllCofeController,
   getCofeByIdController,
   deleteCofeController,
-} = require("../controllers/cofeController");
+} from "../controllers/cofeController.js";
 
-const router = express.Router();
+const router = Router();
 
 // create cofe || post
 router.post("/create", authMiddleware, createCofeController);
@@ -23,4 +23,4 @@ router.get("/get/:id", getCofeByIdController);
 // Delete cofe resturant || Delete
 router.delete("/delete/:id", authMiddleware, deleteCofeController);
 
-module.exports = router;
+export default router;

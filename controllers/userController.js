@@ -1,12 +1,12 @@
 // Get User info
 
-const userModel = require("../models/userModel");
-const bcrypt = require("bcrypt");
+import User from "../models/userModel.js";
+import { compare, genSaltSync, hash } from "bcrypt";
 
 const getUserController = async (req, res) => {
   try {
     // find user
-    const user = await userModel.findById({ _id: req.body.id });
+    const user = await User.findById({ _id: req.body.id });
 
     // validation
     if (!user) {
@@ -37,7 +37,7 @@ const getUserController = async (req, res) => {
 const updateUserController = async (req, res) => {
   try {
     // fine user
-    const user = await userModel.findById({ _id: req.body.id });
+    const user = await User.findById({ _id: req.body.id });
 
     // validation
     if (!user) {
@@ -71,7 +71,7 @@ const updateUserController = async (req, res) => {
 const updatePasswordController = async (req, res) => {
   try {
     // find user
-    const user = await userModel.findById({ _id: req.body.id });
+    const user = await User.findById({ _id: req.body.id });
     // validation
     if (!user) {
       return res.status(404).send({
@@ -87,7 +87,7 @@ const updatePasswordController = async (req, res) => {
         message: "please provide old or new password ",
       });
     } /// check user password | compare passsword
-    const isMatch = await bcrypt.compare(oldPasssword, user.password);
+    const isMatch = await compare(oldPasssword, user.password);
     if (!isMatch) {
       return res.status(401).send({
         success: false,
@@ -95,8 +95,8 @@ const updatePasswordController = async (req, res) => {
       });
     }
     // hashing password
-    var salt = bcrypt.genSaltSync(10);
-    const hashedPassword = await bcrypt.hash(newPassword, salt);
+    var salt = genSaltSync(10);
+    const hashedPassword = await hash(newPassword, salt);
     user.password = hashedPassword;
     await user.save();
     res.status(200).send({
@@ -129,7 +129,7 @@ const resetPasswordController = async (req, res) => {
       message: "error in password reset api",
     });
   }
-  const user = await userModel.findOne({ email, answer });
+  const user = await User.findOne({ email, answer });
   if (!user) {
     return res.status(404).send({
       success: false,
@@ -137,8 +137,8 @@ const resetPasswordController = async (req, res) => {
     });
   }
   // hashing password
-  var salt = bcrypt.genSaltSync(10);
-  const hashedPassword = await bcrypt.hash(newPassword, salt);
+  var salt = genSaltSync(10);
+  const hashedPassword = await hash(newPassword, salt);
   user.password = hashedPassword;
 
   await user.save();
@@ -151,7 +151,7 @@ const resetPasswordController = async (req, res) => {
 //Delete profile acount
 const deleteProfileController = async (req, res) => {
   try {
-    await userModel.findByIdAndDelete(req.params.id);
+    await findByIdAndDelete(req.params.id);
     return res.status(200).send({
       success: true,
       message: "your account has been deleted",
@@ -165,7 +165,7 @@ const deleteProfileController = async (req, res) => {
     });
   }
 };
-module.exports = {
+export default {
   getUserController,
   updateUserController,
   updatePasswordController,

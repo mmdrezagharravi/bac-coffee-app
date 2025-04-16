@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const coffeSchema = new mongoose.Schema(
+const coffeSchema = new Schema(
   {
     name: {
       type: String,
@@ -22,12 +22,12 @@ const coffeSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      //   type: mongoose.Schema.Types.ObjectId,
-      //   ref: "Category",
-      //   required: true,
+      // type: mongoose.Schema.Types.ObjectId,
+      // ref: "Category",
+      // required: true,
     },
     cofeResturant: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "cofeResturant", ///????
     },
     available: {
@@ -55,4 +55,4 @@ const coffeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("coffe", coffeSchema);
+export default model("coffe", coffeSchema);

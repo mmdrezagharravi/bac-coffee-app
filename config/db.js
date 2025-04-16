@@ -16,7 +16,9 @@
 
 // module.exports = connectDb;
 
-const mongoose = require("mongoose");
+// import { connect, connection } from "mongoose";
+import mongoose from "mongoose";
+const { connect, connection } = mongoose;
 
 const connectDb = async () => {
   try {
@@ -24,12 +26,12 @@ const connectDb = async () => {
       throw new Error("MongoDB URL is missing in .env file");
     }
 
-    await mongoose.connect(process.env.MONGO_URL);
-    console.log(`✅ Connected to database: ${mongoose.connection.host}`);
+    await connect(process.env.MONGO_URL);
+    console.log(`✅ Connected to database: ${connection.host}`);
   } catch (error) {
     console.log("❌ DB Error:", error.message);
     process.exit(1); // سرور رو متوقف کن
   }
 };
 
-module.exports = connectDb;
+export default connectDb;
