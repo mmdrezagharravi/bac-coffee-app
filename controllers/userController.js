@@ -7,6 +7,7 @@ const getUserController = async (req, res) => {
   try {
     // find user
     const user = await User.findById({ _id: req.body.id });
+    // const user = await User.findById(req.body.id);
 
     // validation
     if (!user) {
@@ -36,7 +37,7 @@ const getUserController = async (req, res) => {
 // UPDATE USER
 const updateUserController = async (req, res) => {
   try {
-    // fine user
+    // fined user
     const user = await User.findById({ _id: req.body.id });
 
     // validation
@@ -122,36 +123,39 @@ const resetPasswordController = async (req, res) => {
         message: "please provide all fields",
       });
     }
+
+    const user = await User.findOne({ email, answer });
+
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "user not found or invalide answer !!!",
+      });
+    }
+    // hashing password
+    var salt = genSaltSync(10);
+    const hashedPassword = await hash(newPassword, salt);
+    user.password = hashedPassword;
+
+    await user.save();
+    res.status(200).send({
+      success: true,
+      message: "password reset successfuly",
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
       message: "error in password reset api",
+      error,
     });
   }
-  const user = await User.findOne({ email, answer });
-  if (!user) {
-    return res.status(404).send({
-      success: false,
-      message: "user not found or invalide answer !!!",
-    });
-  }
-  // hashing password
-  var salt = genSaltSync(10);
-  const hashedPassword = await hash(newPassword, salt);
-  user.password = hashedPassword;
-
-  await user.save();
-  res.status(200).send({
-    success: true,
-    message: "password reset successfuly",
-  });
 };
 
 //Delete profile acount
 const deleteProfileController = async (req, res) => {
   try {
-    await findByIdAndDelete(req.params.id);
+    await User.findByIdAndDelete(req.params.id);
     return res.status(200).send({
       success: true,
       message: "your account has been deleted",

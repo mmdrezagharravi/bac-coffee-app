@@ -26,10 +26,6 @@ const coffeSchema = new Schema(
       // ref: "Category",
       // required: true,
     },
-    cofeResturant: {
-      type: Schema.Types.ObjectId,
-      ref: "cofeResturant", ///????
-    },
     available: {
       type: Boolean,
       required: true,
